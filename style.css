@@ -14,17 +14,34 @@
     margin: 0;
     padding: 0;
 }
+html {
+    /* Prevents the white flash when scrolling past the top/bottom */
+    background-color: var(--bg-color);
+}
 
 body {
-    background-color: var(--bg-color);
-    background-image: radial-gradient(circle at 50% 0%, #2a1f1c 0%, var(--bg-color) 70%);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Allows the page to grow as tall as your content needs */
     color: var(--off-white);
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
     font-family: 'Poppins', sans-serif;
-    overflow-x: hidden;
+    position: relative; 
+}
+
+body::before {
+    content: '';
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh; 
+    background-color: var(--bg-color);
+    background-image: radial-gradient(circle at 50% 0%, #2a1f1c 0%, var(--bg-color) 70%);
+    z-index: -1; /* Pushes the background behind your links */
+    pointer-events: none;
 }
 
 header {
@@ -187,4 +204,37 @@ a {
 }
 
 
+/* Custom Built Footer Badge */
+.custom-built-footer {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
 
+.custom-built-footer:hover {
+    opacity: 1;
+}
+
+.custom-built-footer .badge {
+    background: rgba(255, 74, 28, 0.1);
+    color: var(--web-color);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    border: 1px solid rgba(255, 74, 28, 0.3);
+    box-shadow: 0 0 10px rgba(255, 74, 28, 0.1);
+}
+
+.custom-built-footer p {
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
