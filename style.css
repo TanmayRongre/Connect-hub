@@ -29,6 +29,7 @@ body {
     align-items: center;
     font-family: 'Poppins', sans-serif;
     position: relative; 
+    cursor: none;
 }
 
 body::before {
@@ -43,6 +44,47 @@ body::before {
     z-index: -1; /* Pushes the background behind your links */
     pointer-events: none;
 }
+
+
+.cursor-dot {
+    width: 5px;
+    height: 5px;
+    background-color: var(--off-white);
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.cursor-outline {
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--text-muted);
+    transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Cursor hover state — triggered on buttons, links, inputs */
+.cursor-dot.cursor-hover {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+}
+
+.cursor-outline.cursor-hover {
+    width: 55px;
+    height: 55px;
+    border-color: var(--web-color);
+    background-color: rgba(255, 74, 28, 0.12);
+    box-shadow: 0 0 18px var(--web-color-glow), inset 0 0 10px rgba(255,74,28,0.1);
+}
+
+.cursor-dot,
+.cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 100000;
+    pointer-events: none;
+}
+
 
 header {
     width: 100%;
@@ -59,7 +101,6 @@ header {
     background-color: var(--tile-bg);
     border: 1px solid var(--tile-border);
     backdrop-filter: blur(10px);
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
